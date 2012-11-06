@@ -1,0 +1,14 @@
+CC=mpicc
+CFLAGS=-c
+LDFLAGS=-lm -lmpe -L/usr/X11R6/lib -lX11
+SOURCES=vnbody.c
+OBJECTS=$(SOURCES:.c=.o)
+EXECUTABLE=vnbody
+
+all: $(SOURCES) $(EXECUTABLE)
+	
+$(EXECUTABLE): $(OBJECTS) 
+	$(CC) $(OBJECTS) -o $@ $(LDFLAGS)
+
+.c.o:
+	$(CC) $(CFLAGS) $< -o $@

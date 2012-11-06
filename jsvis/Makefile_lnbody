@@ -1,0 +1,15 @@
+CC=mpicc
+CFLAGS=-c
+LDFLAGS=-lmpe -lm
+EXECUTABLE=lnbody
+SOURCES=lnbody.c
+OBJECTS=$(SOURCES:.c=.o)
+
+all: $(SOURCES) $(EXECUTABLE)
+
+$(EXECUTABLE): $(OBJECTS)
+	$(CC) $^ -o $@ $(LDFLAGS)
+.c.o:
+	$(CC) $(CFLAGS) $< -o $@
+clean:
+	rm -f *.o
